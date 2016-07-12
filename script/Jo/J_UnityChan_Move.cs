@@ -3,14 +3,12 @@ using System.Collections;
 
 public class J_UnityChan_Move : MonoBehaviour {
 
-    public GameObject LookatTarget;
-
     public float ForwardSpeed;
     public float BackwardSpeed;
     public float JumpPower;
 
     private Vector3 velocity;
-    private Vector3 Look;
+    private Vector3 m_Lookat;
     private Rigidbody rb;
     private Animator anim;
 
@@ -77,25 +75,28 @@ public class J_UnityChan_Move : MonoBehaviour {
     void FixedUpdate()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        Target_Position(); // 주인공이 바라보는 방향을 저장한다.
 
-        Look = new Vector3(LookatTarget.transform.position.x, transform.position.y, LookatTarget.transform.position.z);
-        transform.LookAt(Look); // 표적을 바라본다.
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z-Camera.main.transform.position.z));
+       // Vector3 Screen_playerPos = Camera.main.WorldToScreenPoint(transform.position);
+        m_Lookat = new Vector3(worldPos.x, transform.position.y, transform.position.z);
+      
+
+        transform.LookAt(m_Lookat);
+
+        Mouse_Position(m_Lookat); // 주인공이 바라보는 방향을 저장한다.
     }
 
-    void Target_Position() // 타켓이 플레이어의 왼쪽에 있는지 오른쪽에 있는지 판별한다.
+    void Mouse_Position(Vector3 other) // 마우스가 플레이어의 왼쪽에 있는지 오른쪽에 있는지 판별한다.
     {
-        if (transform.position.x > LookatTarget.transform.position.x)
+        if (transform.position.x > m_Lookat.x)
         {
             left = true;
             right = false;
-            Debug.Log("왼쪽");
         }
-        if (transform.position.x < LookatTarget.transform.position.x)
+        if (transform.position.x < m_Lookat.x)
         {
             right = true;
             left = false;
-            Debug.Log("오른쪽");
         }
     }
 
