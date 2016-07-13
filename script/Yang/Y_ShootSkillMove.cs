@@ -18,8 +18,10 @@ public class Y_ShootSkillMove : MonoBehaviour {
         //Debug.Log("구체생성");
 
         transform.LookAt(new Vector3(playerMove.GetworldPos().x, playerMove.GetworldPos().y, playerObject.transform.position.z));
-        pos = Vector3.forward;
+        transform.Rotate(new Vector3(0, 180, 0));
+        pos = -Vector3.forward;
         pos = transform.TransformDirection(pos);
+        
     }
 	
 	// Update is called once per frame
