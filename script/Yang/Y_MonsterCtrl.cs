@@ -12,7 +12,10 @@ public class Y_MonsterCtrl : MonoBehaviour {
     private Animator animator;
     public float traceDist = 10.0f; // 추적거리(눈물이추적추적
     public float attackDist = 2.0f; // 공격거리
-    
+
+    public GameObject bloodEffect;
+    public GameObject bloodDecal;
+
     private bool isDie = false;
     
     void Start () {
@@ -79,7 +82,14 @@ public class Y_MonsterCtrl : MonoBehaviour {
         //{
         //    Destroy(collider.gameObject);       
         //}
+        CreateBloodEffect(other.transform.position);
         animator.SetTrigger("IsHit");
+    }
+
+    void CreateBloodEffect(Vector3 pos)
+    {
+        GameObject blood1 = (GameObject)Instantiate(bloodEffect, pos, Quaternion.identity);
+        Destroy(blood1, 2.0f);
     }
 
     void Update()

@@ -9,6 +9,7 @@ public class J_UnityChan_Move : MonoBehaviour {
 
     private Vector3 velocity;
     private Vector3 m_Lookat;
+    private Vector3 worldPos;
     private Rigidbody rb;
     private Animator anim;
 
@@ -76,7 +77,7 @@ public class J_UnityChan_Move : MonoBehaviour {
     {
         rb = gameObject.GetComponent<Rigidbody>();
 
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z-Camera.main.transform.position.z));
+        worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z-Camera.main.transform.position.z));
        // Vector3 Screen_playerPos = Camera.main.WorldToScreenPoint(transform.position);
         m_Lookat = new Vector3(worldPos.x, transform.position.y, transform.position.z);
       
@@ -107,5 +108,13 @@ public class J_UnityChan_Move : MonoBehaviour {
     bool GetRight()
     {
         return right;
+    }
+    public Vector3 GetLookAt()
+    {
+        return m_Lookat;
+    }
+    public Vector3 GetworldPos()
+    {
+        return worldPos;
     }
 }
