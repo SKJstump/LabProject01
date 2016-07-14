@@ -5,7 +5,9 @@ public class Y_UseSkill : MonoBehaviour {
 
     public GameObject shotpos;
 
+    public GameObject energyBlast;
     public GameObject erekiball2;
+    public GameObject meteorSwarm;
 
     private int selskill;
 
@@ -45,7 +47,16 @@ public class Y_UseSkill : MonoBehaviour {
                 GameObject skill1 = (GameObject)Instantiate(erekiball2, shotpos.transform.position, Quaternion.identity);
                 Destroy(skill1, 10.0f);  
                 break;
-       }
+            case 2:
+                GameObject skill2 = (GameObject)Instantiate(energyBlast, shotpos.transform.position, Quaternion.identity);
+                Destroy(skill2, 3.0f);
+                break;
+            case 4:
+                
+                GameObject skill4 = (GameObject)Instantiate(meteorSwarm, shotpos.transform.position, Quaternion.identity);
+                //Destroy(skill4, 3.0f);
+                break;
+        }
     }
 
 }

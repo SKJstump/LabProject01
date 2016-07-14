@@ -16,6 +16,8 @@ public class Y_MonsterCtrl : MonoBehaviour {
     public GameObject bloodEffect;
     public GameObject bloodDecal;
 
+    public int hp;
+
     private bool isDie = false;
     
     void Start () {
@@ -86,14 +88,26 @@ public class Y_MonsterCtrl : MonoBehaviour {
         animator.SetTrigger("IsHit");
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Magic")
+        {
+            CreateBloodEffect(other.transform.position);
+            animator.SetTrigger("IsHit");
+        }
+    }
+
     void CreateBloodEffect(Vector3 pos)
     {
         GameObject blood1 = (GameObject)Instantiate(bloodEffect, pos, Quaternion.identity);
         Destroy(blood1, 2.0f);
     }
 
-    void Update()
+    void FixedUpdate()
     {
+       //Debug.Log(hp);
+        if (hp <= 0)
+            Destroy(gameObject);
         //Debug.Log(nvAgent.destination.x);
         
         //nvAgent.SetDestination(playerTr.position);

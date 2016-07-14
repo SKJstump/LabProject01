@@ -11,8 +11,10 @@ public class Y_ShootSkillMove : MonoBehaviour {
     public GameObject destroyEffect;
 
     private Vector3 pos;
-	// Use this for initialization
-	void Start () {
+    public int damage;
+
+    // Use this for initialization
+    void Start () {
         playerObject = GameObject.FindWithTag("Player");
         playerMove = playerObject.GetComponent<J_UnityChan_Move>();
         //Debug.Log("구체생성");
@@ -32,15 +34,22 @@ public class Y_ShootSkillMove : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Monster")
+        if(other.tag == "Player" || other.tag == "Magic")
+        {
+
+        }
+        else if (other.tag == "Monster")
+        {
+            Y_MonsterCtrl monster = other.gameObject.GetComponent<Y_MonsterCtrl>();
+            monster.hp -= damage;
+
+            Destroy(this.gameObject);
+            Instantiate(destroyEffect, this.transform.position, Quaternion.identity);
+        }
+        else
         {
             Destroy(this.gameObject);
-            Debug.Log("이펙트");
             Instantiate(destroyEffect, this.transform.position, Quaternion.identity);
-            //Destroy(destroyEffect,1.5f );
-            
         }
-       
-        
     }
 }
