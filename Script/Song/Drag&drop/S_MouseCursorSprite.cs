@@ -4,13 +4,11 @@ using System.Collections;
 public class S_MouseCursorSprite : MonoBehaviour {
 	// 마우스의 움직임을 저장할 변수
 	private Transform objectTransf;
-	// 오브젝트 활성화 여부
-	private bool isActive = false;
-	// 스크립트 변수 참조를 우ㅣ한 선언.
-	private S_ClickSkill skillObjectScript;
+	// 스크립트 변수 참조를 위한 선언.
+	//private S_ClickSkill skillObjectScript;
 
 	// 어떤 스킬 슬롯을 사용할 것인가.
-	public GameObject skillObject;
+	//public GameObject skillObject;
 	// 카메라 입력.
 	public Camera uiCamera;
 	// 인스턴싱으로 마우스 스프라이트를 그림
@@ -26,17 +24,19 @@ public class S_MouseCursorSprite : MonoBehaviour {
 
 		if (uiCamera == null)
 			uiCamera = NGUITools.FindCameraForLayer(gameObject.layer);
+
+        this.GetComponent<UISprite>().enabled = false;
 		
-		skillObjectScript = skillObject.GetComponent<S_ClickSkill>();
+		//skillObjectScript = skillObject.GetComponent<S_ClickSkill>();
 		
 	}
 
 	void Update()
 	{
-		CheckMObjectActive ();
+		//CheckMObjectActive ();
 
 		//if (isActive) {
-		if (instance.GetComponent<UISprite>().enabled) {
+		if (this.GetComponent<UISprite>().enabled) {
 			MouseObjectMove ();
 		}
 
@@ -80,17 +80,19 @@ public class S_MouseCursorSprite : MonoBehaviour {
 
 	void CheckMObjectActive()
 	{
-		if (skillObjectScript.clicked) {
-			//isActive = true;
-			instance.GetComponent<UISprite>().enabled = false;
-			instance.GetComponent<UISprite>().spriteName = skillObject.GetComponent<UISprite>().spriteName;
+		//if (skillObjectScript.clicked) {
+		//	//isActive = true;
+		//	instance.GetComponent<UISprite>().enabled = false;
+		//	instance.GetComponent<UISprite>().spriteName = skillObject.GetComponent<UISprite>().spriteName;
 
 
-			//Debug.Log ("작동!");
-		} else {
-			//isActive = false;
-			instance.GetComponent<UISprite>().enabled = true;
-			Debug.Log ("작동!");
-		}
+		//	//Debug.Log ("작동!");
+		//} else {
+		//	//isActive = false;
+		//	instance.GetComponent<UISprite>().enabled = true;
+		//	Debug.Log ("작동!");
+		//}
 	}
+
+    
 }
