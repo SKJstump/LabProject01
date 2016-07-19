@@ -7,12 +7,13 @@ public class S_MouseCursorSprite : MonoBehaviour {
 	// 스크립트 변수 참조를 위한 선언.
 	//private S_ClickSkill skillObjectScript;
 
-	// 어떤 스킬 슬롯을 사용할 것인가.
-	//public GameObject skillObject;
+	// 어떤 스킬 오브젝트가 올 것인가.
+	public GameObject skillObject;
 	// 카메라 입력.
 	public Camera uiCamera;
 	// 인스턴싱으로 마우스 스프라이트를 그림
 	static public S_MouseCursorSprite instance;
+
 
 	void Awake() { instance = this; }
 

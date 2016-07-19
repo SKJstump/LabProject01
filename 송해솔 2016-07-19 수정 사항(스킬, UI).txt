@@ -1,0 +1,4 @@
+Y_UseSkill -> S_UseSkill 수정
+UI 부분
+	- Skill 창 부분 E버튼 누르면 열었다 닫았다가 가능
+	- Skill 선택하여 드래그 앤 드롭 하면 스킬 장착 가능
