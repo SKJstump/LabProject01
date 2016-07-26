@@ -21,11 +21,14 @@ public class S_MouseCursorSprite : MonoBehaviour {
 
 	void Start()
 	{
+        // 마우스 좌표 초기화다
 		objectTransf = GetComponent<Transform> ();
 
+        // 카메라 못찾으면 안되서 넣어 준다.
 		if (uiCamera == null)
 			uiCamera = NGUITools.FindCameraForLayer(gameObject.layer);
 
+        // 그림 안그린다.
         this.GetComponent<UISprite>().enabled = false;
 		
 		//skillObjectScript = skillObject.GetComponent<S_ClickSkill>();
@@ -34,12 +37,16 @@ public class S_MouseCursorSprite : MonoBehaviour {
 
 	void Update()
 	{
-		//CheckMObjectActive ();
-
-		//if (isActive) {
+        // 첵잇아웃 해서 그림 그려지면 마우스 따라다닌다.
 		if (this.GetComponent<UISprite>().enabled) {
 			MouseObjectMove ();
 		}
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            this.GetComponent<UISprite>().enabled = false;
+        }
+
 
 	}
 
@@ -48,7 +55,7 @@ public class S_MouseCursorSprite : MonoBehaviour {
 		//Debug.Log ("작동!");
 		Vector3 mousePos = Input.mousePosition;
 
-
+        // DirectX ; 화면 좌표 월드 좌표까지 옮긴다.
 		if (uiCamera != null)
 		{
 			// Since the screen can be of different than expected size, we want to convert
@@ -76,7 +83,7 @@ public class S_MouseCursorSprite : MonoBehaviour {
 			objectTransf.localPosition = mousePos;
 		}
 
-		Debug.Log (objectTransf.position);
+		//Debug.Log (objectTransf.position);
 	}
 
 	void CheckMObjectActive()

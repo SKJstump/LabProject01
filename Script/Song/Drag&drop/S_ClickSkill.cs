@@ -8,11 +8,13 @@ public class S_ClickSkill : MonoBehaviour {
     public GameObject skillObject;
 
 	void Start () {
+        // 그림.. 안 그려지게 시작한다.
         MouseObject.GetComponent<UISprite>().enabled = false;
     }
 
     void OnClick()
     {
+        // 그림 첵잇아웃한 다음 마우스에 드래그 시킨다.
         if(MouseObject.GetComponent<UISprite>().enabled == false)
         {
             MouseObject.GetComponent<UISprite>().spriteName = this.GetComponent<UISprite>().spriteName;

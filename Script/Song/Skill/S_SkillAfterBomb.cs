@@ -39,7 +39,7 @@ public class S_SkillAfterBomb : MonoBehaviour
     {
         if (other.tag == "Monster")
         {
-            Y_MonsterCtrl monster = other.gameObject.GetComponent<Y_MonsterCtrl>();
+            Y_HP monster = other.gameObject.GetComponent<Y_HP>();
 
             if (Time.time - startTime > bombTime)
             {

@@ -12,6 +12,7 @@ public class S_DropSkillToSkillSet : MonoBehaviour {
 	
 	void OnClick()
     {
+        // 마우스에 스킬 드래그 중이어야 작동한다.
         if (MouseObject.GetComponent<UISprite>().enabled)
         {
             this.GetComponent<UISprite>().spriteName = MouseObject.GetComponent<UISprite>().spriteName;
